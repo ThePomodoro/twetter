@@ -5,6 +5,11 @@ module ApplicationHelper
   # authenticated user is already following the user passed, an unfollow (DELETE) form
   # will be generated. Otherwise, a follow (CREATE) form will be generated.
   #
+
+  def link_username(user)
+     link_to '@' + user.username, {:controller => "follows", :action => "profile", :username => user.username.gsub(/@/,"") }
+  end
+
   def follow_link(user)
     follow = Follow.where(:user => current_user, :following => user)
     if follow.exists?

@@ -10,6 +10,10 @@ class FollowsController < ApplicationController
     @users = User.all_except(current_user)
   end
 
+  def profile
+    @user = User.where(:username => params[:username]).first
+    @twets = @user.twets
+  end
   # POST /follows
   #
   # This action first attempts to find an existing Follow instance between the current user and
